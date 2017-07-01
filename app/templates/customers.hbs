@@ -1,0 +1,4 @@
+<button {{action 'toggleParams' 'withinRange'}}>{{if withinRange 'See all customers' 'filter within range only'}}</button>
+{{#each sortedInfos as |customer|}}
+  {{customer-info customer=customer}}
+{{/each}}
