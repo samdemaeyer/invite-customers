@@ -5,14 +5,23 @@ const { computed } = Ember;
 export default Ember.Controller.extend({
   queryParams: ['withinRange'],
   withinRange: true,
+  sort: 'userId',
 
-  sortedInfos: computed('model', function() {
-    return this.get('model').sortBy('userId');
+  sortedInfos: computed('model', 'sort', function() {
+    return this.get('model').sortBy(this.get('sort'));
   }),
 
   actions:{
     toggleParams(param) {
       this.toggleProperty(param);
+    },
+
+    sortInfos() {
+      if (this.get('sort') === 'userId') {
+        this.set('sort', 'distance');
+      } else {
+        this.set('sort', 'userId');
+      }
     }
   }
 });

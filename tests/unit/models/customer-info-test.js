@@ -1,12 +1,21 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('customer-info', 'Unit | Model | customer info', {
-  // Specify the other units that are required for this test.
-  needs: []
-});
+moduleForModel('customer-info', 'Unit | Model | Customer Info');
 
 test('it exists', function(assert) {
-  let model = this.subject();
-  // let store = this.store();
-  assert.ok(!!model);
+  let customerInfo = {
+    latitude: '52.986375',
+    longitude: '-6.043701',
+    userId: 12,
+    name: 'Christina McArdle',
+    invited: false
+  };
+
+  let model = this.subject(customerInfo);
+
+  assert.equal(model.get('latitude'), customerInfo.latitude, 'latitude successfully saved');
+  assert.equal(model.get('longitude'), customerInfo.longitude, 'longitude successfully saved');
+  assert.equal(model.get('userId'), customerInfo.userId, 'userId successfully saved');
+  assert.equal(model.get('name'), customerInfo.name, 'userId successfully saved');
+  assert.equal(model.get('invited'), customerInfo.invited, 'userId successfully saved');
 });
